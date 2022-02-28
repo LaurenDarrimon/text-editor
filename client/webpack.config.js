@@ -24,7 +24,7 @@ module.exports = () => {
         template: "./index.html",
         title: "J.A.T.E.",
       }),
-      //new MiniCssExtractPlugin(),
+      new MiniCssExtractPlugin(),
       new InjectManifest({
         swSrc: "./src-sw.js",
       }),
@@ -50,7 +50,7 @@ module.exports = () => {
       rules: [
         {
           test: /\.css$/i,
-          use: ['style-loader', "css-loader"],
+          use: [MiniCssExtractPlugin.loader, "css-loader"],
         },
         {
           test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -63,7 +63,7 @@ module.exports = () => {
             loader: "babel-loader",
             options: {
               presets: ["@babel/preset-env"],
-              plugins: ['@babel/transform-runtime']
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime']
             },
           },
         },
